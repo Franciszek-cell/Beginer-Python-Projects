@@ -1,0 +1,83 @@
+print("====KREATOR KONTA====")
+
+while True: #kod do wprowadzania imienia i nazwiska z walidacją
+    print()
+    imię = input("Podaj swoje Imie: ")
+    nazwisko = input("Podaj swoje Nazwisko: ")
+
+    if len(imię) < 1 or len(nazwisko) < 1:
+        print()
+        print("Imię i nazwisko nie mogą być puste.")
+        continue
+
+    elif not imię.islower() or not nazwisko.islower(): 
+        print()
+        print("Imię i nazwisko powinny być zapisane małymi literami.")
+        continue
+
+    elif imię.startswith("@") or nazwisko.endswith("."): #rozdzielić reguły na dwie osobne linie i dodać żeby imię i nazwisko nie mogły zaczynać się od cyfry i kropki
+        print()
+        print("Imię nie powinno zaczynać się od '@', a nazwisko nie powinno kończyć się kropką.")
+        continue
+
+    elif '.com' in imię or '.pl' in imię or '.com' in nazwisko or '.pl' in nazwisko:
+        print()
+        print("Imię i nazwisko nie powinny zawierać domen internetowych.")
+        continue   
+
+    else:
+        email = imię + "." + nazwisko + "@email.com"
+
+        print()
+        print("Dane zostały poprawnie wprowadzone.")
+        print()
+        print(f"Imię: {imię}, Nazwisko: {nazwisko}")
+
+        odpowiedź = input("Czy dane są poprawne? (tak/nie): ")
+
+        if odpowiedź == "tak":
+            print()
+            print(f"Adres email: {email}")
+            break
+        elif odpowiedź == "nie":
+            print()
+            print("Proszę wprowadzić dane ponownie.")
+            continue
+
+print()
+print("Teraz wygenerujemy dla Ciebie hasło.")
+
+while True: #kod do wprowadzania hasła z walidacją
+    hasło = input("Podaj swoje hasło: ")
+
+    if len(hasło) < 8:
+        print()
+        print("Hasło powinno mieć co najmniej 8 znaków.")
+    elif not any(znak in hasło for znak in "!@#$%^&*()-_=+[]}{;:'\",.<>/?"):
+        print()
+        print("Hasło powinno zawierać co najmniej jeden znak specjalny.")
+    elif not any(znak.isdigit() for znak in hasło):
+        print()
+        print("Hasło powinno zawierać co najmniej jedną cyfrę.")
+    elif not any(znak.isupper() for znak in hasło):
+        print()
+        print("Hasło powinno zawierać co najmniej jedną wielką literę.")
+    elif not any(znak.islower() for znak in hasło):
+        print()
+        print("Hasło powinno zawierać co najmniej jedną małą literę.")
+    else:
+        print()
+        sprawdzenie = input("Wprowadź hasło ponownie w celu potwierdzenia: ")
+        if hasło != sprawdzenie:
+            print()
+            print("Hasła nie są zgodne. Spróbuj ponownie.")
+            continue
+        else:
+            print()
+            print("Hasło zostało poprawnie wprowadzone.")
+            break
+print()
+print("Konto zostało pomyślnie utworzone!")
+print(f"Twój adres email: {email}")
+print(f"Twoje hasło: {hasło}")
+print('Dziękujemy za skorzystanie z naszego kreatora konta!')
